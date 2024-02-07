@@ -1,3 +1,6 @@
+import React from "react";
+import { Bar } from "react-chartjs-2";
+
 export default function PredictionResult() {
   return (
     <div>
@@ -16,3 +19,40 @@ export default function PredictionResult() {
     </div>
   );
 }
+
+
+
+const BarChart = ({ featureImportances }) => {
+  const data = {
+    labels: featureImportances.map((item) => item.Feature),
+    datasets: [
+      {
+        label: "Importance",
+        data: featureImportances.map((item) => item.Importance),
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        ticks: {
+          maxRotation: 90,
+          minRotation: 80,
+        },
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return (
+    <div>
+      <Bar data={data} options={options} />
+    </div>
+  );
+};
