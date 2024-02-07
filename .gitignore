@@ -1,1 +1,3 @@
-server/.venv
+server\.venv
+server\_pycache_
+.vscode
