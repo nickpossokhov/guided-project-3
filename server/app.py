@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 import pickle
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 unit_types = ['unknown', 'at-st', 'stormtrooper', 'x-wing', 'tie_silencer', 'tie_fighter', 
         'at-at', 'resistance_soldier']
@@ -27,6 +30,7 @@ def welcome():
     return "Hello world"
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     data = request.get_json()
     homeworld = data["homeworld"]

@@ -3,8 +3,20 @@ import Carousel from "./Carousel"; // Import the Carousel component
 import { useState } from "react";
 import { api } from "../util/apiCall";
 
+const unit_types = ['unknown', 'at-st', 'stormtrooper', 'x-wing', 'tie_silencer', 'tie_fighter', 
+        'at-at', 'resistance_soldier'];
+
+const homeworlds = ['Champala', 'Tund', 'Mirial', 'Haruun Kal', 'Stewjon', 'Toydaria',
+       'Naboo', 'Troiken', 'Dathomir', 'Iktotch', 'Concord Dawn', 'Dorin',
+       'Dagobah', 'Cerea', 'Rodia', 'Serenno', 'Kashyyyk', 'Corellia',
+       'Tholoth', 'Iridonia', 'Glee Anselm', 'Bestine IV', 'Ojom',
+       'Socorro', 'Ryloth', 'Malastare', 'Quermia', 'Mon Cala',
+       'Chandrila', 'Skako', 'Alderaan', 'Umbara', 'Aleen Minor',
+       'Tatooine', 'Muunilinst', 'Zolan', 'Trandosha', 'Sullust', 'Shili',
+       'Kalee', 'Eriadu', 'Vulpter'];
+
 export default function Home() {
-  const apiEndpoint = "/get/predict";
+  const apiEndpoint = "predict";
   const [formData, setFormData] = useState({
     homeworld: "",
     unit_type: "",
@@ -44,7 +56,7 @@ export default function Home() {
               <label htmlFor="exampleFormControlInput" className="form-label">
                 Homeworld
               </label>
-              <input
+              {/* <input
                 type="text"
                 name="homeworld"
                 className="form-control"
@@ -53,13 +65,26 @@ export default function Home() {
                 id="exampleFormControlInput"
                 placeholder="Shili"
               ></input>
+              <input
+                type="text"
+                name="homeworld"
+                className="form-control"
+                value={formData.homeworld}
+                onChange={handleChange}
+                id="exampleFormControlInput"
+                placeholder="Shili"
+              ></input> */}
+              <select className="form-select" value={formData.homeworld} aria-label="Default select example" onChange={handleChange}>
+                {homeworlds.map((world, index) => <option value={world}>{world}</option>)}
+                <option selected>Select a Homeworld</option>
+              </select>
             </div>
 
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">
                 Unit Type
               </label>
-              <input
+              {/* <input
                 type="text"
                 name="unit_type"
                 className="form-control"
@@ -67,7 +92,11 @@ export default function Home() {
                 onChange={handleChange}
                 id="exampleFormControlInput1"
                 placeholder="at-st"
-              ></input>
+              ></input> */}
+              <select className="form-select" value={formData.unit_type} aria-label="Default select example" onChange={handleChange}>
+                {unit_types.map((unit_type, index) => <option value={unit_type} >{unit_type}</option>)}
+                <option selected>Select a Unit Type</option>
+              </select>
             </div>
             <div className="col-auto">
               <button type="submit" className="btn btn-primary mb-3">

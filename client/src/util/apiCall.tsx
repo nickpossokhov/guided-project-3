@@ -1,6 +1,6 @@
 // api code for making requests to the server
 //
-const API_URL = "http://localhost:8081/api";
+const API_URL = "http://localhost:5000";
 
 export const api = {
   request: async (method, url, data = null) => {
