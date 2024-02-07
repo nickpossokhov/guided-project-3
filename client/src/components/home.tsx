@@ -31,12 +31,16 @@ export default function Home() {
     });
   };
 
+  // const handleSelectChange = (e) => {
+  //   setSelectedOption(e.target.value);
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const responseData = await api.post(apiEndpoint, formData);
       if (responseData) {
-        setPredictionData(responseData.data);
+        setPredictionData(responseData);
         setSubmissionSuccess(true);
       }
     } catch (error) {
@@ -74,7 +78,7 @@ export default function Home() {
                 id="exampleFormControlInput"
                 placeholder="Shili"
               ></input> */}
-              <select className="form-select" value={formData.homeworld} aria-label="Default select example" onChange={handleChange}>
+              <select className="form-select" name="homeworld" aria-label="Default select example" onChange={handleChange}>
                 {homeworlds.map((world, index) => <option value={world}>{world}</option>)}
                 <option selected>Select a Homeworld</option>
               </select>
@@ -93,7 +97,7 @@ export default function Home() {
                 id="exampleFormControlInput1"
                 placeholder="at-st"
               ></input> */}
-              <select className="form-select" value={formData.unit_type} aria-label="Default select example" onChange={handleChange}>
+              <select className="form-select" name="unit_type" aria-label="Default select example" onChange={handleChange}>
                 {unit_types.map((unit_type, index) => <option value={unit_type} >{unit_type}</option>)}
                 <option selected>Select a Unit Type</option>
               </select>
